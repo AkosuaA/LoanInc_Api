@@ -6,11 +6,11 @@ from flask import request
 def login(force = True):
     data = request.get_json()
     print(data)
-    agent = Agent.query.filter_by(email=data.get('email')).first()
+    agent = Agent.query.filter_by(email=data.get('Email')).first()
     if agent is None:
-        return {"message": "Email provided does not exist", "field": "email", "status": "invalid"}
-    if not agent.check_password(data.get('password')):
-        return {"message": "Invalid password provided", "field": "password", "status": "invalid"}
+        return {"message": "Email provided does not exist", "field": "Email", "status": "invalid"}
+    if not agent.check_password(data.get('Password')):
+        return {"message": "Invalid password provided", "field": "Password", "status": "invalid"}
     return {"status": "success"}
 
 @app.route('/customers')
